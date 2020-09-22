@@ -11,11 +11,16 @@ import './assets/fonts/iconfont.css'
 // 引入初始化css
 import './assets/css/reset.css'
 
+// 引入全局过滤器
+import filters from './utils/filter.js'
 // 引入echarts图表
-import ECharts from 'vue-echarts'
-import 'echarts/lib/chart/line'
-Vue.component('chart', ECharts)
+// import ECharts from 'vue-echarts'
+// import 'echarts/lib/chart/line'
+// Vue.component('chart', ECharts)
+import myCharts from './utils/MyCharts.js'
 
+filters(Vue)
+Vue.use(myCharts)
 Vue.use(ElementUI)
 new Vue({
   router,

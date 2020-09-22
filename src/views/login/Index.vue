@@ -38,6 +38,9 @@
 </template>
 
 <script>
+import { login } from '@/api/account.js'
+import local from '@/utils/local.js'
+
 export default {
   data() {
     return {
@@ -60,13 +63,30 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          this.$message({
-            message: '恭喜你,登录成功',
-            type: 'success',
-            duration: 2000
+          const { code, msg, token } = await login({
+            account: this.loginForm.uname,
+            password: this.loginForm.pass
           })
+          if (code === 0) {
+            /* this.$message({
+              message: msg,
+              type: 'success',
+              duration: 2000
+            }) */
+            local.set('admin', this.loginForm.uname)
+            local.set('tk', token)
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 1000)
+          } else if (code === 1) {
+            this.$message({
+              message: msg,
+              type: 'error',
+              duration: 2000
+            })
+          }
         } else {
           this.$message({
             message: '用户名或密码错误',
@@ -121,5 +141,8 @@ export default {
       }
     }
   }
+}
+/deep/ .el-input__inner {
+  background-color: #2d3a4b;
 }
 </style>

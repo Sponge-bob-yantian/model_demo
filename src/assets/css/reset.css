@@ -144,23 +144,3 @@ body {
   height: 100%;
 
 }
-
-
-.el-input__inner {
-  background-color: #2d3a4b;
-}
-
-.hello {
-  width: 100%;
-  background-color: #fff;
-  margin: 20px;
-}
-
-.echarts {
-  width: 1200px !important;
-  height: 600px !important;
-}
-
-canvas {
-  left: 200px;
-}

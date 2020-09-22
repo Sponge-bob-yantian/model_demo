@@ -11,16 +11,7 @@
     </el-aside>
     <el-container>
       <el-header>
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ path: '/login' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/' }">活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
-        <div class="right">
-          <span>欢迎你，小貂蝉</span>
-          <img src="../assets/img/photo.jpeg" alt />
-        </div>
+        <Header />
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -31,7 +22,7 @@
 
 <script>
 import NavMenu from './component/NavMenu.vue'
-// import Content from './component/Content.vue'
+import Header from './component/Header.vue'
 export default {
   data() {
     return {
@@ -39,8 +30,8 @@ export default {
     }
   },
   components: {
-    NavMenu
-    // Content
+    NavMenu,
+    Header
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -74,20 +65,10 @@ export default {
   }
 }
 .el-header {
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .right {
-    img {
-      width: 36px;
-      height: 36px;
-      margin-left: 10px;
-      border-radius: 50%;
-    }
-  }
+  height: 100%;
 }
 .el-main {
+  height: 100%;
   background: rgb(240, 240, 240);
   padding: 0;
 }

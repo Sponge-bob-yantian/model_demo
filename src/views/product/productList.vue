@@ -1,9 +1,21 @@
 <template>
-  <div>productlist</div>
+  <div>
+    <panel>
+      <template #head>
+        <h3>商品列表</h3>
+      </template>
+      <template #content></template>
+    </panel>
+  </div>
 </template>
 
 <script>
-export default {}
+import panel from '@/components/panel/index.vue'
+export default {
+  components: {
+    panel
+  }
+}
 </script>
 
 <style lang="less" scoped>
