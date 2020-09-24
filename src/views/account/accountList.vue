@@ -45,6 +45,7 @@
               <el-button type="primary" @click="saveEdit">确 定</el-button>
             </div>
           </el-dialog>
+          <!-- 分页 -->
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -209,9 +210,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-pagination {
-  margin: 40px 0 20px;
-}
 .editForm {
   .el-input {
     width: 200px;

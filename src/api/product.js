@@ -30,11 +30,6 @@ export function searchCate(ask) {
   return req.get('/goods/categories', ask)
 }
 
-// 商品图片上传接口
-export function proPicupload(ask) {
-  return req.post('/goods/goods_img_upload', ask)
-}
-
 // 添加商品接口
 export function addPro(ask) {
   return req.post('/goods/add', ask)

@@ -18,6 +18,11 @@ import filters from './utils/filter.js'
 // import 'echarts/lib/chart/line'
 // Vue.component('chart', ECharts)
 import myCharts from './utils/MyCharts.js'
+import echarts from 'echarts'
+// 引入moment
+import moment from 'moment'
+Vue.prototype.$moment = moment
+Vue.prototype.$echarts = echarts
 
 filters(Vue)
 Vue.use(myCharts)

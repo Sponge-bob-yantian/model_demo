@@ -9,10 +9,10 @@ export function getShopInfo(ask) {
   return req.get('/shop/info', ask)
 }
 
-// 店铺图片上传接口
-export function picUpdata(ask) {
-  return req.post('/shop/upload', ask)
-}
+// // 店铺图片上传接口
+// export function picUpdata(ask) {
+//   return req.post('/shop/upload', ask)
+// }
 
 // 店铺内容修改接口
 export function shopEdit(ask) {

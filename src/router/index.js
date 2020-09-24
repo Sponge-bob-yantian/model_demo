@@ -105,6 +105,15 @@ const routes = [
               import(
                 /* webpackChunkName : "ordermag" */ '../views/order/orderManage.vue'
               )
+          },
+          {
+            path: '/ordermag/edit/:id',
+            meta: { title: '订单编辑' },
+            props: true,
+            component: () =>
+              import(
+                /* webpackChunkName : "ordermag" */ '../views/order/orderEdit.vue'
+              )
           }
         ]
       },

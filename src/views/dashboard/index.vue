@@ -9,6 +9,7 @@
 import MyCard from './components/card.vue'
 import MyCharts from './components/Charts.vue'
 import { getAccountInfo } from '@/api/account.js'
+import { getTotal } from '@/api/order.js'
 import local from '@/utils/local.js'
 
 export default {
@@ -24,8 +25,16 @@ export default {
         { id: 3, title: '今日订单数', icon: 'icon-renwu', num: '102,400' },
         { id: 4, title: '今日销售额', icon: 'icon-renminbi', num: '102,400' }
       ],
-      info: {}
+      info: {},
+      todayOrder: '',
+      totalAmount: '',
+      totalOrder: '',
+      totayAmount: ''
     }
+  },
+  created() {
+    this.getInfo()
+    this.getTotalData()
   },
   methods: {
     async getInfo() {
@@ -38,10 +47,14 @@ export default {
         imgUrl: data.accountInfo.imgUrl
       }
       local.set('imgUrl', this.info.imgUrl)
+    },
+    async getTotalData() {
+      const data = await getTotal()
+      this.todayOrder = data.todayOrder
+      this.totalAmount = data.totalAmount
+      this.totalAmount = data.totalAmount
+      this.totalOrder = data.totalOrder
     }
-  },
-  created() {
-    this.getInfo()
   }
 }
 </script>

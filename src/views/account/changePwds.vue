@@ -35,16 +35,10 @@
 </template>
 
 <script>
-import panel from '../../components/panel/index.vue'
+import panel from '@/components/panel/index.vue'
+import local from '@/utils/local.js'
 import { pwdReg } from '../../utils/validate.js'
 import { checkOldPwd, editPassword } from '../../api/account.js'
-/* import {
-  pwdReg1,
-  hasWordReg,
-  hasNumberReg,
-  hasSymbolReg,
-  passwordReg2
-} from '../../utils/validate.js' */
 
 export default {
   components: {
@@ -52,17 +46,16 @@ export default {
   },
   data() {
     // 自定义校验规则
-    const validatePass = (rule, value, callback) => {
+    const validatePass = async (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
-      } else if (!pwdReg.test(value)) {
-        callback(new Error('只能输入6-20个字母、数字、下划线'))
       } else {
-        if (this.accountAdd.affirm !== '') {
-          this.$refs.ruleForm.validateField('affirm')
+        const data = await checkOldPwd({ oldPwd: this.accountAdd.pwd })
+        if (data.code === '00') {
+          callback()
+        } else {
+          callback(new Error('原密码错误,请重新输入!'))
         }
-        callback()
-        checkOldPwd({ oldPwd: this.accountAdd.pwd })
       }
     }
     const validatePass1 = (rule, value, callback) => {
@@ -95,7 +88,7 @@ export default {
         affirm: ''
       },
       rules: {
-        pwd: [{ validator: validatePass, trigger: 'change' }],
+        pwd: [{ validator: validatePass, trigger: 'blur' }],
         new: [{ validator: validatePass1, trigger: 'blur' }],
         affirm: [{ validator: checkValidatePass, trigger: 'blur' }]
       }
@@ -108,6 +101,7 @@ export default {
           const { code } = await editPassword({ newPwd: this.accountAdd.new })
           if (code === 0) {
             this.$refs[formName].resetFields()
+            local.remove('tk')
             setTimeout(() => {
               this.$router.push('/login')
             }, 1000)

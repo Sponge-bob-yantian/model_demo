@@ -48,3 +48,13 @@ export function editPassword(ask) {
 export function getAccountInfo(ask) {
   return req.get('/users/info', ask)
 }
+
+// // 头像上传接口
+// export function picUpload(ask) {
+//   return req.get('/users/avatar_upload', ask)
+// }
+
+// 修改头像接口
+export function picEdit(ask) {
+  return req.get('/users/avataredit', ask)
+}
